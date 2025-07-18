@@ -15,7 +15,7 @@ id2label = {
     2: "POSITIVE"
 }
 
-def predict_sentiment(text: str) -> dict:
+def classify_sentiment(text: str) -> dict:
     # Preprocess input
     encoded_input = tokenizer(text, return_tensors='pt')
     
@@ -24,7 +24,6 @@ def predict_sentiment(text: str) -> dict:
         output = model(**encoded_input)
         scores = F.softmax(output.logits, dim=1)[0]
 
-    # Get top prediction
     label_id = torch.argmax(scores).item()
     confidence = round(scores[label_id].item(), 4)
     label = id2label[label_id]
