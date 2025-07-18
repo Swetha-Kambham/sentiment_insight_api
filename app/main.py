@@ -6,10 +6,9 @@ from app.insight import generate_insight
 
 app = FastAPI()
 
-# Allow local dev from frontend if needed
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # Adjust in production
+    allow_origins=["*"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
